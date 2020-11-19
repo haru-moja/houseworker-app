@@ -1,0 +1,64 @@
+<%= render "shared/second-header" %>
+<%= form_with model: @work, url: works_path, class: 'new_work_main', local: true do |f| %>
+<div class="form_wrap">
+  <div class="form-header">
+    <h1 class="form_header_text">
+      お仕事情報入力
+    </h1>
+  </div>
+</div>
+
+
+<div class="form-group">
+  <div class="form-text-wrap">
+    <label class="form-text">お仕事名</label>
+    <span class="indispensable">必須</span>
+  </div>
+  <%= f.text_field :title, class: "input_default",
+  id: "title", placeholder:"例) 皿洗い" %>
+</div>
+
+<div class="form-group">
+  <div class="form-text-wrap">
+    <label class="form-text">お仕事の詳細</label>
+    <span class="indispensable">必須</span>
+  </div>
+  <%= f.text_area :text_content, class: "input_default",
+  id: "text_content", placeholder:"例) できるだけシンクをきれいに使ってください" %>
+</div>
+<div class="form-group">
+  <div class="form-text-wrap">
+    <label class="form-text">お小遣い金額</label>
+    <span class="indispensable">必須</span>
+  </div>
+  <%= f.text_field :price, class: "input_default",
+  id: "price", placeholder:"例) 200" %>円
+</div>
+<div class="form-group">
+  <div class="form-text-wrap">
+    <label class="form-text">必要時間数予想</label>
+    <span class="indispensable">必須</span>
+  </div>
+  約<%= f.number_field :need_time_id, min: 1, max: 10,
+    value: 1,class: "input_default",id: "need_time_id" %>時間
+</div>
+<div class="form-group">
+  <div class="form-text-wrap">
+    <label class="form-text">お仕事を依頼したい日</label>
+    <span class="indispensable">必須</span>
+  </div>
+  <%= raw sprintf(
+              f.date_select(
+                  :date,
+                  use_month_numbers: true,
+                  selected: Date.today,
+                  end_year:          (Time.now.year + 20),
+                  date_separator:    '%s'), # 年月日区切りをそれぞれ指定
+              '年 ', '月 ') + '日'
+  %>
+</div>
+<div class='request-btn'>
+    <%= f.submit "お仕事を依頼する" ,class:"work_request-btn" %>
+  </div>
+
+<% end %>
