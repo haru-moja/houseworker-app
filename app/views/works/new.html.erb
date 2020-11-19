@@ -1,4 +1,5 @@
 <%= render "shared/second-header" %>
+
 <%= form_with model: @work, url: works_path, class: 'new_work_main', local: true do |f| %>
 <div class="form_wrap">
   <div class="form-header">
@@ -39,7 +40,7 @@
     <label class="form-text">必要時間数予想</label>
     <span class="indispensable">必須</span>
   </div>
-  約<%= f.number_field :need_time_id, min: 1, max: 10,
+  <%= f.number_field :need_time_id, min: 1, max: 10,
     value: 1,class: "input_default",id: "need_time_id" %>時間
 </div>
 <div class="form-group">
@@ -50,6 +51,7 @@
   <%= raw sprintf(
               f.date_select(
                   :date,
+                  class: "input_default",
                   use_month_numbers: true,
                   selected: Date.today,
                   end_year:          (Time.now.year + 20),

@@ -581,20 +581,36 @@ textarea,
 }
 /* ここまでリセットCSS */
 body {
-    background-color: #B6E6BD;
+    background-color: #faeee7;
   }
   /* ここからヘッダーCSS */
+  .title{
+    text-align: center;
+    padding: 0 31%;
+  }
+  h1 {
+    position: relative;
+    padding: 0.25em 1em;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+  }
+  h1:before, h1:after {
+    content: '';
+    position: absolute;
+    top: -7px;
+    width: 2px;
+    height: -webkit-calc(100% + 14px);
+    height: calc(100% + 14px);
+    background-color: black;
+  }
+  h1:before {
+    left: 7px;
+  }
+  h1:after {
+    right: 7px;
+  }
   .search-bar-contents {
-    display: flex;
-    justify-content: center;
-  }
-  .lists-left{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-  }
-  .lists-left li{
-    margin: 20px;
+    width: 100%;
   }
   .input-box {
     width: 300px;
@@ -610,26 +626,60 @@ body {
   }
   .nav{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
   }
+  .root_icon{
+    color: #33272a;
+    background-color:#ffc6c7;
+    border-radius: 50px 15px 15px 50px;
+    display: inline-flex;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: 0 10px;
+    margin: 20px 10px;
+    align-items: center;
+    border: outset 4px #ff8ba7;
+  }
+  .root_icon:hover {
+    color: #33272a;
+    background: #f6dadb;
+  }
+  .root_icon:active {
+    border: inset 4px #ff8ba7;
+  }
+  
+  /* ここまでヘッダーCSS */
+  /* ここからセカンドヘッダーCSS */
   .logo{
     padding: 10px;
     height: 100px;
     width: 100px;
     border-radius: 30%;
+    float: left;
+    border: outset 4px #ff8ba7;
+    color: #33272a;
+    background-color:#ffc6c7;
   }
-  
-  /* ここまでヘッダーCSS */
+  .logo:hover {
+    color: #33272a;
+    background: #f6dadb;
+  }
+  .logo:active {
+    border: inset 4px #ff8ba7;
+  }
+  .second-header{
+    height: 100px;
+  }
+  /* ここまでセカンドヘッダーCSS */
+
   /* ここから入力ホームに関するCSS */
-  .new_work_main{
-    text-align: center;
-    background-color: pink;
-  }
 
   /* ここまで入力ホームに関するCSS */
   /* ここからお仕事一覧ページに関するCSS */
   .work-up{
-    font-size: 1.6rem;
+  font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.5;
   position: relative;
@@ -646,14 +696,19 @@ body {
   vertical-align: middle;
   text-decoration: none;
   letter-spacing: 0.1em;
-  color: #fff;
-  background-color: #eb6100;
+  color: #33272a;
+  background-color:#ffc6c7;
   border-radius: 100vh;
   justify-content: center;
+  bottom: 1px solid ;
+  border: outset 4px #ff8ba7;
   }
 .work-up:hover {
-  color: #fff;
-  background: #f56500;
+  color: #33272a;
+  background: #f6dadb;
+}
+.work-up:active {
+  border: inset 4px #ff8ba7;
 }
 
 .work_buton{
@@ -662,5 +717,44 @@ body {
 
 a.btn--radius {
    border-radius: 100vh;
+}
+
+.input_default{
+  width: 50vw;
+  font-size: x-large;
+}
+.form-group{
+    margin-left: 24%;
+    margin-bottom: 5px;
+    font-size: x-large;
+}
+.form_header_text{
+  text-align: center;
+  width: 30%;
+  margin: 0 auto;
+}
+.work_request-btn{
+  display: block;
+  margin-left:  auto;
+  margin-right:  auto;
+  margin-top:  5px;
+  background-color:#ffc6c7;
+  border-radius: 100vh;
+  bottom: 1px solid ;
+  border: outset 4px #ff8ba7;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.work_request-btn:hover {
+  color: #33272a;
+  background: #f6dadb;
+}
+.work_request-btn:active {
+  border: inset 4px #ff8ba7;
+}
+.second-header{
+  height: 100px;
 }
   /* ここまでお仕事一覧ページに関するCSS */
