@@ -1,4 +1,5 @@
 class WorksController < ApplicationController
+  before_action :set_home
   def index
     @works = Work.all
   end
@@ -16,11 +17,11 @@ class WorksController < ApplicationController
   def show
     @work = Work.find(params[:id])
   end
-
+  
   def edit
     @work = Work.find(params[:id])
   end
-
+  
   def update
     @work = Work.find(params[:id])
     if @work.update(params_work)
@@ -29,7 +30,7 @@ class WorksController < ApplicationController
       render :edit
     end
   end
-
+  
   def destroy
     @work = Work.find(params[:id])
     @work.destroy
@@ -38,5 +39,9 @@ class WorksController < ApplicationController
   private
   def params_work
     params.require(:work).permit(:title, :text_content, :price, :need_time, :start_time, images: []).merge(user_id: current_user.id)
+  end
+  
+  def set_home
+    @home = Home.find(params[:home_id])
   end
 end

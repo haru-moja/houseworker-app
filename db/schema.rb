@@ -87,9 +87,11 @@ ActiveRecord::Schema.define(version: 2020_11_23_082002) do
     t.integer "price", null: false
     t.decimal "need_time", precision: 4, scale: 1, null: false
     t.datetime "start_time", null: false
-    t.bigint "user_id", null: false
+    t.bigint "home_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["home_id"], name: "index_works_on_home_id"
     t.index ["user_id"], name: "index_works_on_user_id"
   end
 
@@ -99,5 +101,6 @@ ActiveRecord::Schema.define(version: 2020_11_23_082002) do
   add_foreign_key "home_users", "homes"
   add_foreign_key "home_users", "users"
   add_foreign_key "reports", "completes"
+  add_foreign_key "works", "homes"
   add_foreign_key "works", "users"
 end

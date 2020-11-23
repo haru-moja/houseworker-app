@@ -1,6 +1,6 @@
 <%= render "shared/header" %>
 <div class="work_buton">
-<%= link_to 'お仕事発注', new_work_path, class: "work-up" %>
+<%= link_to 'お仕事発注', new_home_work_path(@home.id), class: "work-up" %>
 </div>
 <% if @works %>
   <div class="works_index">
@@ -8,7 +8,7 @@
       <div class="work_contents">
         <%= work.title %> <br>
         <% if work.images.count > 0 %>
-            <%= link_to image_tag(work.images.first.variant(resize: "150x150").processed),work_path(work.id), class: "won" %> <br>
+            <%= link_to image_tag(work.images.first.variant(resize: "150x150").processed),home_work_path(@home.id, work.id), class: "won" %> <br>
         <% end %>
       </div>
     <% end %>
@@ -32,7 +32,7 @@
       <tr>
         <td><%= work.title %></td>
         <td><%= work.start_time.strftime("%Y-%m-%d %H:%M") %></td>
-        <td><%= link_to 'Show', work_path(work.id) %></td>
+        <td><%= link_to 'Show', home_work_path(@home.id, work.id) %></td>
         <td><%= link_to 'Edit', "#" %></td>
         <td><%= link_to 'Destroy',"#", method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -49,7 +49,7 @@
 
   <% works.each do |work| %>
     <div>
-      <%= link_to work.title, work_path(work.id) %>
+      <%= link_to work.title, home_work_path(@home.id, work.id) %>
     </div>
   <% end %>
 <% end %>

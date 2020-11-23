@@ -35,10 +35,10 @@
   <% if user_signed_in? && current_user.id == @work.user_id %>
     
     <div class='conplete-btn'>
-      <%= link_to "お仕事を編集する" , edit_work_path(@work.id),class:"work_request-btn", id:"complete" %>
+      <%= link_to "お仕事を編集する" , edit_home_work_path(@home.id, @work.id),class:"work_request-btn", id:"complete" %>
     </div>
     <div class='conplete-btn'>
-      <%= link_to "お仕事を削除する" , work_path(@work.id),class:"work_request-btn", id:"complete" %>
+      <%= link_to "お仕事を削除する" , home_work_path(@home.id, @work.id),class:"work_request-btn", id:"complete" %>
     </div>
   <% elsif user_signed_in? %>
     <div class='conplete-btn'>

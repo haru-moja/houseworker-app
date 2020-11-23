@@ -6,7 +6,8 @@ class CreateWorks < ActiveRecord::Migration[6.0]
       t.integer :price,              null: false
       t.decimal :need_time,       null: false, precision: 4, scale: 1       
       t.datetime :start_time,              null: false
-      t.references :user,            null: false, foreign_key: true
+      t.references :home,             foreign_key: true
+      t.references :user,             foreign_key: true
       t.timestamps
     end
   end
