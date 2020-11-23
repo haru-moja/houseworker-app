@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-root to: 'works#index'
-resources :works, only: [:index, :new, :create]
+root to: 'homes#index'
+resources :homes, only: [:index, :new, :create]
+resources :works do
+  resources :completes, only: [:index, :new, :create]
+end
 end

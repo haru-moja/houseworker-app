@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require simple_calendar
  *= require_tree .
  *= require_self
  */
@@ -584,9 +585,15 @@ body {
     background-color: #faeee7;
   }
   /* ここからヘッダーCSS */
+  .top-page-header{
+    display: flex;
+    position: relative;
+  }
   .title{
     text-align: center;
-    padding: 0 31%;
+    width: 100%;
+    margin-left: 30%;
+    margin-right: 30%;
   }
   h1 {
     position: relative;
@@ -616,17 +623,21 @@ body {
     width: 300px;
     height: 30px;
   }
+  .nav{
+    display: flex;
+    position: absolute;
+    top: 75%;
+    right: 10px;
+  }
+
   .lists-right{
     list-style: none;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
   .lists-right li{
-    margin: 20px;
-  }
-  .nav{
-    display: flex;
-    justify-content: flex-end;
+    margin-right: 5px;
   }
   .root_icon{
     color: #33272a;
@@ -674,87 +685,147 @@ body {
   }
   /* ここまでセカンドヘッダーCSS */
 
-  /* ここから入力ホームに関するCSS */
+  /* ここからお仕事新規登録入力ホームに関するCSS */
 
-  /* ここまで入力ホームに関するCSS */
-  /* ここからお仕事一覧ページに関するCSS */
   .work-up{
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.5;
-  position: relative;
-  display: inline-flex;
-  padding: 1rem 4rem;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  color: #33272a;
-  background-color:#ffc6c7;
-  border-radius: 100vh;
-  justify-content: center;
-  bottom: 1px solid ;
-  border: outset 4px #ff8ba7;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    display: inline-flex;
+    padding: 1rem 4rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #33272a;
+    background-color:#ffc6c7;
+    border-radius: 100vh;
+    justify-content: center;
+    bottom: 1px solid ;
+    border: outset 4px #ff8ba7;
   }
-.work-up:hover {
-  color: #33272a;
-  background: #f6dadb;
-}
-.work-up:active {
-  border: inset 4px #ff8ba7;
-}
-
-.work_buton{
-  text-align: center;
-}
-
-a.btn--radius {
-   border-radius: 100vh;
-}
-
-.input_default{
-  width: 50vw;
-  font-size: x-large;
-}
-.form-group{
+  .work-up:hover {
+    color: #33272a;
+    background: #f6dadb;
+  }
+  .work-up:active {
+    border: inset 4px #ff8ba7;
+  }
+  
+  .work_buton{
+    text-align: center;
+  }
+  
+  a.btn--radius {
+    border-radius: 100vh;
+  }
+  
+  .input_default{
+    width: 50vw;
+    font-size: x-large;
+  }
+  .form-group{
     margin-left: 24%;
     margin-bottom: 5px;
     font-size: x-large;
-}
-.form_header_text{
-  text-align: center;
-  width: 30%;
-  margin: 0 auto;
-}
-.work_request-btn{
-  display: block;
-  margin-left:  auto;
-  margin-right:  auto;
-  margin-top:  5px;
-  background-color:#ffc6c7;
-  border-radius: 100vh;
-  bottom: 1px solid ;
-  border: outset 4px #ff8ba7;
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.5;
-  cursor: pointer;
-}
-.work_request-btn:hover {
-  color: #33272a;
-  background: #f6dadb;
-}
-.work_request-btn:active {
-  border: inset 4px #ff8ba7;
-}
-.second-header{
-  height: 100px;
-}
+  }
+  .form_header_text{
+    text-align: center;
+    width: 30%;
+    margin: 0 auto;
+  }
+  .work_request-btn{
+    display: block;
+    margin-left:  auto;
+    margin-right:  auto;
+    margin-top:  5px;
+    background-color:#ffc6c7;
+    border-radius: 100vh;
+    bottom: 1px solid ;
+    border: outset 4px #ff8ba7;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.5;
+    cursor: pointer;
+    outline: none;
+  }
+  .work_request-btn:hover {
+    color: #33272a;
+    background: #f6dadb;
+  }
+  .work_request-btn:active {
+    border: inset 4px #ff8ba7;
+  }
+  .second-header{
+    height: 100px;
+  }
+  /* ここまでお仕事新規登録入力ホームに関するCSS */
+  /* ここからお仕事一覧ページに関するCSS */
+  .works_index{
+    display: flex;
+  }
+
   /* ここまでお仕事一覧ページに関するCSS */
+  /* ここからユーザー新規登録入力フォームに関するCSS */
+  #new_user {
+    margin-top: 33px;
+  }
+  /* ここまでユーザー新規登録入力フォームに関するCSS */
+  /* ここからお仕事詳細ページに関するCSS */
+  .show_content {
+    text-align: center;
+    margin: 0 auto;
+    color: #594a4e;
+  }
+  .main_image {
+    display: flex;
+    justify-content: center;
+  }
+  .show_image2 {
+    width: 90px;
+    vertical-align: bottom;
+    cursor: pointer;
+    opacity: 1;
+  }
+  .show_image2:hover {
+    opacity: 0.4;
+  }
+  .thumnails {
+    display: grid;
+    grid-template-columns: repeat(5,90px);
+    gap: 10px;
+  }
+  .content_space {
+    background-color: #ffc6c7;
+    width: 50%;
+    margin: 0 auto;
+  }
+  .show_content_name {
+    border: 2px solid #594a4e;
+    width: 40%;
+    margin: 0 auto;
+  }
+  .conplete-btn {
+    width: 20%;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+  #complete {
+    text-decoration: none;
+    color:  #594a4e;
+  }
+  #complete:active {
+    opacity: 0.8;
+  }
+  .footer {
+    height: 100px;
+  }
+  /* ここまでお仕事詳細ページに関するCSS */

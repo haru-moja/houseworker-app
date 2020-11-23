@@ -13,8 +13,30 @@ class WorksController < ApplicationController
       render :new
     end
   end
+  def show
+    @work = Work.find(params[:id])
+  end
+
+  def edit
+    @work = Work.find(params[:id])
+  end
+
+  def update
+    @work = Work.find(params[:id])
+    if @work.update(params_work)
+      redirect_to root_path, notice:"編集しました"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @work = Work.find(params[:id])
+    @work.destroy
+    redirect_to root_path, notice:"削除しました"
+  end
   private
   def params_work
-    params.require(:work).permit(:title, :text_content, :price, :need_time_id, :date).merge(user_id: current_user.id)
+    params.require(:work).permit(:title, :text_content, :price, :need_time, :start_time, images: []).merge(user_id: current_user.id)
   end
 end

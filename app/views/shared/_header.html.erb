@@ -1,13 +1,13 @@
 <%# CSS・・・assets/stylesheets/shared/header.css %>
 <header class='top-page-header'>
     <div class="title">
-      <h1>株式会社○○家　家事分担アプリ</h1>
+      <h1>お仕事依頼フォーム</h1>
     </div>
   <div class='nav'>
     <ul class='lists-right'>
       <% if current_user %>
-        <li><%= link_to current_user.nickname, "#", class: "user-nickname" %></li> 
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
+        <li class="user-name"><%= link_to current_user.nickname, "#", class: "user-nickname" %></li> 
+        <li class="log"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
       <% else %>
         <li><%= link_to 'ログイン',  user_session_path, class: "login" %></li>
         <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>

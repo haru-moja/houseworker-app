@@ -1,0 +1,44 @@
+<%= render "shared/second-header" %>
+
+<%= form_with(model: @complete_report,  url: work_completes_path(@work.id), class: 'new_work_main', local: true) do |f| %>
+<div class="form_wrap">
+  <div class="form-header">
+    <h1 class="form_header_text">
+      お仕事完了レポート
+    </h1>
+  </div>
+</div>
+
+
+
+<div class="form-group">
+  <div class="form-text-wrap">
+    <label class="form-text">お仕事の感想</label>
+    <span class="indispensable">必須</span>
+  </div>
+  <%= f.text_area :text_report, class: "input_default",
+  id: ":text_report", placeholder:"例) ありがとうございました。" %>
+</div>
+
+<div class="form-group">
+  <div class="form-text-wrap">
+    <label class="form-text">満足度</label>
+    <span class="indispensable">必須</span>
+  </div>
+  <%= f.text_field :feeling_score_id, class: "input_default",
+  id: "feeling_score_id", value: 1 %>
+</div>
+
+
+<div class="form-group">
+  <div class="form-text-wrap">
+    <label class="form-text">参考画像</label>
+  </div>
+    <%= f.file_field :images, multiple: true,class: "input_default",id: "report_image" %>
+</div>
+
+<div class='request-btn'>
+    <%= f.submit "レポートを提出する" ,class:"work_request-btn" %>
+</div>
+
+<% end %>
