@@ -1,0 +1,60 @@
+<%= render "shared/second-header" %>
+<div class="show_content">
+  <div class="content_space">
+    <h2 class="show_content_name">お仕事名</h2>
+    <h3><%= @work.title %></h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">お仕事内容etc..</h2>
+    <h3><%= @work.text_content %></h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">報酬金額</h2>
+    <h3><%= @work.price %></h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">お仕事にかかる時間</h2>
+    <h3><%= @work.need_time %></h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">お仕事をする日</h2>
+    <h3><%= @work.start_time.strftime("%Y-%m-%d %H:%M") %></h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">お仕事参考写真</h2>
+    <% if @work.images.attached? %>
+      <div class="main_image", id="image-list">
+        <div class="thumnails">
+          <% @work.images.each do |image| %>
+          <%= link_to image, "data-lightbox" => image do %>
+            <%= image_tag image.variant(combine_options:{gravity: :center, resize:"640x640^",crop:"640x640+0+0"}).processed,class: "show_image2", id: "show_image", :style=>"width:300;"%>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <% if user_signed_in? && current_user.id == @work.user_id %>
+    
+    <div class='conplete-btn'>
+      <%= link_to "お仕事を編集する" , edit_home_work_path(@home.id, @work.id),class:"work_request-btn", id:"complete" %>
+    </div>
+    <div class='conplete-btn'>
+      <%= link_to "お仕事を削除する" , home_work_path(@home.id, @work.id),method: :delete,class:"work_request-btn", id:"complete" %>
+    </div>
+  <% elsif user_signed_in? && @work.complete == nil %>
+    <div class='conplete-btn'>
+      <%= link_to "お仕事を完了する" , home_work_completes_path(@home.id, @work.id),class:"work_request-btn", id:"complete" %>
+    </div>
+  <% elsif user_signed_in? && @work.complete %>
+    <div class='conplete-btn'>
+      <%= link_to "お仕事は完了しています" , "/",class:"work_request-btn", id:"complete" %>
+    </div>
+  <% else %>
+  ログインしろよ
+  <% end %>
+  <footer>
+  <div class="footer"></div>
+  </footer>
+</div>
+  

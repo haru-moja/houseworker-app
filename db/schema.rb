@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_19_050517) do
+ActiveRecord::Schema.define(version: 2020_11_24_065944) do
+
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "completes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -21,6 +42,21 @@ ActiveRecord::Schema.define(version: 2020_11_19_050517) do
     t.index ["work_id"], name: "index_completes_on_work_id"
   end
 
+  create_table "home_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "home_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["home_id"], name: "index_home_users_on_home_id"
+    t.index ["user_id"], name: "index_home_users_on_user_id"
+  end
+
+  create_table "homes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text_report", null: false
     t.integer "feeling_score_id", null: false
@@ -28,6 +64,14 @@ ActiveRecord::Schema.define(version: 2020_11_19_050517) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["complete_id"], name: "index_reports_on_complete_id"
+  end
+
+  create_table "user_contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text_content", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_contents_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -49,16 +93,23 @@ ActiveRecord::Schema.define(version: 2020_11_19_050517) do
     t.string "title", null: false
     t.text "text_content", null: false
     t.integer "price", null: false
-    t.integer "need_time_id", null: false
-    t.date "date", null: false
-    t.bigint "user_id", null: false
+    t.decimal "need_time", precision: 4, scale: 1, null: false
+    t.datetime "start_time", null: false
+    t.bigint "home_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["home_id"], name: "index_works_on_home_id"
     t.index ["user_id"], name: "index_works_on_user_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "completes", "users"
   add_foreign_key "completes", "works"
+  add_foreign_key "home_users", "homes"
+  add_foreign_key "home_users", "users"
   add_foreign_key "reports", "completes"
+  add_foreign_key "user_contents", "users"
+  add_foreign_key "works", "homes"
   add_foreign_key "works", "users"
 end
