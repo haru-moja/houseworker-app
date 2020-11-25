@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_082002) do
+ActiveRecord::Schema.define(version: 2020_11_24_065944) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -66,6 +66,14 @@ ActiveRecord::Schema.define(version: 2020_11_23_082002) do
     t.index ["complete_id"], name: "index_reports_on_complete_id"
   end
 
+  create_table "user_contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text_content", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_contents_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "last_name", default: "", null: false
     t.string "first_name", default: "", null: false
@@ -101,6 +109,7 @@ ActiveRecord::Schema.define(version: 2020_11_23_082002) do
   add_foreign_key "home_users", "homes"
   add_foreign_key "home_users", "users"
   add_foreign_key "reports", "completes"
+  add_foreign_key "user_contents", "users"
   add_foreign_key "works", "homes"
   add_foreign_key "works", "users"
 end

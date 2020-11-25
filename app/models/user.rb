@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :completes
   has_many :home_users
   has_many :homes, through: :home_users
+  has_one :user_content
 end

@@ -799,9 +799,8 @@ body {
     opacity: 0.4;
   }
   .thumnails {
-    display: grid;
-    grid-template-columns: repeat(5,90px);
-    gap: 10px;
+    display: flex;
+    justify-content: space-between;
   }
   .content_space {
     background-color: #ffc6c7;
@@ -829,3 +828,24 @@ body {
     height: 100px;
   }
   /* ここまでお仕事詳細ページに関するCSS */
+
+  /* ここからお仕事完了ページに関するCSS */
+  .complete_header {
+    padding-bottom: 20px;
+  }
+  .complete_space {
+    height: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  /* ここまでお仕事完了ページに関するCSS */
+  /* ここからカレンダーに関するCSS */
+  .calendar-title {
+    font-size: 40px;
+    padding: 0 10px;
+    background-color: #ffc6c7;
+    background-color:#ffc6c7;
+    border-radius: 100vh;
+    border: outset 4px #ff8ba7;
+  }
+  /* ここまでカレンダーに関するCSS */

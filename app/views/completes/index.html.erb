@@ -1,44 +1,75 @@
+
 <%= render "shared/second-header" %>
+<div class="show_content">
+ <div class="form-header complete_header">
+      <h1 class="form_header_text">
+        お仕事完了レポート
+      </h1>
+    </div>
+  <div class="content_space">
+    <h2 class="show_content_name">お仕事名</h2>
+    <h3><%= @work.title %></h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">お仕事内容etc..</h2>
+    <h3><%= @work.text_content %></h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">報酬金額</h2>
+    <h3><%= @work.price %>円</h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">お仕事にかかる時間</h2>
+    <h3><%= @work.need_time %>時間</h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">お仕事をする日</h2>
+    <h3><%= @work.start_time.strftime("%Y-%m-%d %H:%M") %></h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">お仕事参考写真</h2>
+    <% if @work.images.attached? %>
+      <div class="main_image", id="image-list">
+        <div class="thumnails">
+          <% @work.images.each do |image| %>
+          <%= link_to image, "data-lightbox" => image do %>
+            <%= image_tag image.variant(combine_options:{gravity: :center, resize:"640x640^",crop:"640x640+0+0"}).processed,class: "show_image2", id: "show_image", :style=>"width:300;"%>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="complete_space">
+    <%= form_with(model: @complete_report,  url: home_work_completes_path(@home.id,@work.id), class: 'new_work_main', local: true) do |f| %>
+    <div class="content_space complete_space">
+      <div class="show_content_name">
+        <label class="form-text">お仕事の感想</label>
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_area :text_report, class: "input_default",
+      id: ":text_report", placeholder:"例) ありがとうございました。" %>
+    </div>
 
-<%= form_with(model: @complete_report,  url: work_completes_path(@work.id), class: 'new_work_main', local: true) do |f| %>
-<div class="form_wrap">
-  <div class="form-header">
-    <h1 class="form_header_text">
-      お仕事完了レポート
-    </h1>
+    <div class="content_space complete_space">
+      <div class="show_content_name">
+        <label class="form-text">満足度</label>
+        <span class="indispensable">必須</span>
+      </div>
+       <%= f.collection_select(:feeling_score_id, FeelingScore.all, :id, :name, {}, {class:"select-box", id:"feeling_score_id"}) %>
+    </div>
+
+
+    <div class="content_space complete_space">
+      <div class="show_content_name">
+        <label class="form-text">参考画像</label>
+      </div>
+        <%= f.file_field :images, multiple: true,class: "input_default",id: "report_image" %>
+    </div>
+
+    <div class='request-btn'>
+        <%= f.submit "レポートを提出する" ,class:"work_request-btn" %>
+    </div>
+    <% end %>
   </div>
 </div>
-
-
-
-<div class="form-group">
-  <div class="form-text-wrap">
-    <label class="form-text">お仕事の感想</label>
-    <span class="indispensable">必須</span>
-  </div>
-  <%= f.text_area :text_report, class: "input_default",
-  id: ":text_report", placeholder:"例) ありがとうございました。" %>
-</div>
-
-<div class="form-group">
-  <div class="form-text-wrap">
-    <label class="form-text">満足度</label>
-    <span class="indispensable">必須</span>
-  </div>
-  <%= f.text_field :feeling_score_id, class: "input_default",
-  id: "feeling_score_id", value: 1 %>
-</div>
-
-
-<div class="form-group">
-  <div class="form-text-wrap">
-    <label class="form-text">参考画像</label>
-  </div>
-    <%= f.file_field :images, multiple: true,class: "input_default",id: "report_image" %>
-</div>
-
-<div class='request-btn'>
-    <%= f.submit "レポートを提出する" ,class:"work_request-btn" %>
-</div>
-
-<% end %>

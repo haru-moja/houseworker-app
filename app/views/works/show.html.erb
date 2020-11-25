@@ -26,7 +26,9 @@
       <div class="main_image", id="image-list">
         <div class="thumnails">
           <% @work.images.each do |image| %>
-            <%= image_tag image.variant(combine_options:{gravity: :center, resize:"640x640^",crop:"640x640+0+0"}).processed,class: "show_image2", id: "show_image"%>
+          <%= link_to image, "data-lightbox" => image do %>
+            <%= image_tag image.variant(combine_options:{gravity: :center, resize:"640x640^",crop:"640x640+0+0"}).processed,class: "show_image2", id: "show_image", :style=>"width:300;"%>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -38,11 +40,15 @@
       <%= link_to "お仕事を編集する" , edit_home_work_path(@home.id, @work.id),class:"work_request-btn", id:"complete" %>
     </div>
     <div class='conplete-btn'>
-      <%= link_to "お仕事を削除する" , home_work_path(@home.id, @work.id),class:"work_request-btn", id:"complete" %>
+      <%= link_to "お仕事を削除する" , home_work_path(@home.id, @work.id),method: :delete,class:"work_request-btn", id:"complete" %>
     </div>
-  <% elsif user_signed_in? %>
+  <% elsif user_signed_in? && @work.complete == nil %>
     <div class='conplete-btn'>
-      <%= link_to "お仕事を完了する" , "/works/#{@work.id}/completes",class:"work_request-btn", id:"complete" %>
+      <%= link_to "お仕事を完了する" , home_work_completes_path(@home.id, @work.id),class:"work_request-btn", id:"complete" %>
+    </div>
+  <% elsif user_signed_in? && @work.complete %>
+    <div class='conplete-btn'>
+      <%= link_to "お仕事は完了しています" , "/",class:"work_request-btn", id:"complete" %>
     </div>
   <% else %>
   ログインしろよ

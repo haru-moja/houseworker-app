@@ -1,10 +1,10 @@
 <%= render "shared/header" %>
 <div class="work_buton">
-<%= link_to 'お仕事発注', new_home_work_path(@home.id), class: "work-up" %>
+<%= link_to 'お仕事を発注する', new_home_work_path(@home.id), class: "work-up" %>
 </div>
-<% if @works %>
+<% if current_user.works %>
   <div class="works_index">
-    <% @works.each do |work| %>
+    <% current_user.works.each do |work| %>
       <div class="work_contents">
         <%= work.title %> <br>
         <% if work.images.count > 0 %>
@@ -14,27 +14,30 @@
     <% end %>
   </div>
 <% end %>
-<p id="notice"><%= notice %></p>
 
-<h1>自分の日記</h1>
+<h1><%= @home.name %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>タイトル</th>
-      <th>時間</th>
+      <th>お仕事一覧</th>
+      <th>予定日時</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @works.each do |work| %>
+    <% @home.works.each do |work| %>
       <tr>
-        <td><%= work.title %></td>
-        <td><%= work.start_time.strftime("%Y-%m-%d %H:%M") %></td>
-        <td><%= link_to 'Show', home_work_path(@home.id, work.id) %></td>
-        <td><%= link_to 'Edit', "#" %></td>
-        <td><%= link_to 'Destroy',"#", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if user_signed_in? && current_user.id == work.user_id %>
+          <td><%= link_to work.title, home_work_path(@home.id, work.id),class: "work-up" %></td>
+          <td><%= link_to '編集する', edit_home_work_path(@home.id, work.id) %></td>
+          <td><%= link_to '削除する',home_work_path(@home.id, work.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% elsif user_signed_in? && work.complete == nil %>
+          <td><%= link_to work.title, home_work_path(@home.id, work.id),class: "work-up" %></td>
+          <td><%= work.start_time.strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= link_to 'お仕事を受ける', home_work_path(@home.id, work.id) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -42,9 +45,7 @@
 
 <br>
 
-<%= link_to '日記をかく', "#" %>
-
-<%= month_calendar events: @works do |date, works| %>
+<%= month_calendar events: @home.works do |date, works| %>
   <%= date.day %>
 
   <% works.each do |work| %>

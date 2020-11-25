@@ -6,4 +6,5 @@ Rails.application.routes.draw do
       resources :completes, only: [:index, :new, :create]
     end
   end
+  resources :user_contents, only: [:index, :new, :create, :edit, :update]
 end

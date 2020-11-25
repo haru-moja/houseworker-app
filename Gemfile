@@ -59,3 +59,5 @@ gem 'image_processing', '~> 1.2'
 gem "jquery-rails"
 gem 'pry-rails'
 gem 'simple_calendar', '~> 2.0'
+gem 'rails-i18n', '~> 6.0.0' 
+gem 'active_hash'
