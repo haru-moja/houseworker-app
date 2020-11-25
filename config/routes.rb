@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'homes#index'
   resources :homes, only: [:index, :new, :create] do
     resources :works do
-      resources :completes, only: [:index, :new, :create]
+      resources :completes, only: [:index, :new, :create, :show]
     end
   end
   resources :user_contents, only: [:index, :new, :create, :edit, :update]

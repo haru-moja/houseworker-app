@@ -1,17 +1,17 @@
 <%= render "shared/second-header" %>
 <% %>
 <div class="user_content">
-  <div class="content_space">
-    <h3><%= current_user.nickname %></h3>
+  <div class="content_spaces">
+    <h2>　　　<%= current_user.nickname %>さんの</h2>
     <div class="complete_work">
       <% @sum_month = 0 %>
-      <h2>今月のお仕事一覧</h2>
+      <h2>　　　今月のお仕事一覧</h2>
       <div class="complete_contents">
           <% @completes_month.each do |complete| %>
             <% if complete.user_id == current_user.id %>
                 <div class="complete_content">
                   <div class="complete_work_title">
-                    <h3><%= complete.work.title %></h3>
+                    <h3><%= link_to complete.work.title, home_work_path(complete.work.home_id, complete.work.id),class: "work_link" %></h3>
                   </div>
                   <div class="complete_work_price">
                     <h3><%= complete.work.price %></h3>
@@ -20,27 +20,78 @@
                 </div>
             <% end %>
           <% end %>
-        <h3>今月の合計金額<br><%= @sum_month %>円</h3>
-      </div>
-    </div>
+          <div class="month_total_content">
+            <h3 class="month_total">今月の合計金額<br><%= @sum_month %>円</h3>
     <div class="complete_work">
       <% @sum = 0 %>
-      <h2>今までのお仕事一覧</h2>
+      <%# <h2>　　　今までのお仕事一覧</h2> %>
       <div class="complete_contents">
         <% @completes.each do |complete| %>
           <% if complete.user_id == current_user.id %>
-            <div class="complete_content">
-              <div class="complete_work_title">
+            <%# <div class="complete_content"> %>
+              <%# <div class="complete_work_title"> %>
+                    <%# <h3><%= complete.work.title </h3> %>
+                  <%# </div> %>
+                  <%# <div class="complete_work_price"> %>
+                    <%# <h3><%= complete.work.price </h3> %>
+                  <%# </div> %>
+                  <% @sum += complete.work.price %>
+            <%# </div> %>
+          <% end %>
+        <% end %>
+        <div class="total">
+            <h3>全期間合計金額<br><%= @sum %>円</h3>
+        </div>
+          </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="user_content2">
+  <div class="content_spaces">
+    <h2>　　　<%= current_user.nickname %>さんへのお仕事完了報告</h2>
+    <div class="complete_work">
+      <% @sum_month = 0 %>
+      <h2>　　　今月のお完了報告者一覧</h2>
+      <div class="complete_contents">
+          <% @completes_month.each do |complete| %>
+            <% if complete.work.user_id == current_user.id %>
+                <div class="complete_content">
+                  <div class="complete_work_title">
                     <h3><%= complete.work.title %></h3>
+                    <h3><%= link_to complete.user.nickname, home_work_complete_path(complete.work.home_id, complete.work.id,complete.id),class: "work_link" %></h3>
                   </div>
                   <div class="complete_work_price">
                     <h3><%= complete.work.price %></h3>
                   </div>
+                  <% @sum_month += complete.work.price %>
+                </div>
+            <% end %>
+          <% end %>
+        <div class="month_total_content">
+          <h3 class="month_total">今月のお支払い金額合計<br><%= @sum_month %>円</h3>
+        </div>
+      </div>
+    </div>
+    <div class="complete_work">
+      <% @sum = 0 %>
+      <%# <h2>　　　今までのお仕事一覧</h2> %>
+      <div class="complete_contents">
+        <% @completes.each do |complete| %>
+          <% if complete.user_id == current_user.id %>
+            <%# <div class="complete_content"> %>
+              <%# <div class="complete_work_title"> %>
+                    <%# <h3><%= complete.work.title </h3> %>
+                  <%# </div> %>
+                  <%# <div class="complete_work_price"> %>
+                    <%# <h3><%= complete.work.price </h3> %>
+                  <%# </div> %>
                   <% @sum += complete.work.price %>
-            </div>
+            <%# </div> %>
           <% end %>
         <% end %>
-        <h3>今までの合計金額<br><%= @sum %>円</h3>
       </div>
     </div>
   </div>

@@ -5,12 +5,14 @@
 <% if current_user.works %>
   <div class="works_index">
     <% current_user.works.each do |work| %>
-      <div class="work_contents">
-        <%= work.title %> <br>
-        <% if work.images.count > 0 %>
-            <%= link_to image_tag(work.images.first.variant(resize: "150x150").processed),home_work_path(@home.id, work.id), class: "won" %> <br>
-        <% end %>
-      </div>
+      <% if work.complete == nil %>
+        <div class="work_contents">
+          <%= work.title %> <br>
+          <% if work.images.count > 0 %>
+              <%= link_to image_tag(work.images.first.variant(resize: "50x50").processed),home_work_path(@home.id, work.id), class: "won" %> <br>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 <% end %>
@@ -29,11 +31,7 @@
   <tbody>
     <% @home.works.each do |work| %>
       <tr>
-        <% if user_signed_in? && current_user.id == work.user_id %>
-          <td><%= link_to work.title, home_work_path(@home.id, work.id),class: "work-up" %></td>
-          <td><%= link_to '編集する', edit_home_work_path(@home.id, work.id) %></td>
-          <td><%= link_to '削除する',home_work_path(@home.id, work.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% elsif user_signed_in? && work.complete == nil %>
+        <% if user_signed_in? && work.complete == nil %>
           <td><%= link_to work.title, home_work_path(@home.id, work.id),class: "work-up" %></td>
           <td><%= work.start_time.strftime("%Y-%m-%d %H:%M") %></td>
           <td><%= link_to 'お仕事を受ける', home_work_path(@home.id, work.id) %></td>
@@ -49,8 +47,14 @@
   <%= date.day %>
 
   <% works.each do |work| %>
-    <div>
-      <%= link_to work.title, home_work_path(@home.id, work.id) %>
-    </div>
+    <% if work.complete == nil %>
+      <div class = "work_title_link">
+        <%= link_to work.title, home_work_path(@home.id, work.id),class: "work_title_link" %>
+      </div>
+    <% else %>
+      <div class = "work_title_link">
+        <%= link_to work.title, home_work_path(@home.id, work.id),class: "work_title_link2" %>❌
+      </div>
+    <% end %>
   <% end %>
 <% end %>
