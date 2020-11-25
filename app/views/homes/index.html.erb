@@ -1,0 +1,19 @@
+<%= render "shared/header" %>
+<div class="home_main">
+<% if user_signed_in? %>
+  <div class="work_buton">
+    <%= link_to 'ホームルーム作成', new_home_path, class: "work-up" %>
+  </div>
+<% end %>
+</div>
+<% if user_signed_in? && current_user.homes %>
+  <div class="works_index">
+    <% current_user.homes.each do |home| %>
+      <div class="room">
+        <div class="room-name work_contents">
+          <%=link_to home.name, home_works_path(home) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %> 
