@@ -1,12 +1,68 @@
 // Place all the styles related to the user_contents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+h3 {
+  margin: 3px 0;
+}
+.user_content {
+  width: 100%;
+}
+.user_content2 {
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.total {
+  width: 100%;
+  margin-right: 5%;
+  color: #33272a;
+  text-align: right;
+}
+.month_total {
+  color: #33272a;
+  text-align: right;
+  margin: 0 auto;
+}
+.month_total_content {
+  width: 50%;
+  margin-right: 5%;
+  margin-left: auto;
+  
+}
+.content_spaces {
+  border-radius: 80px;
+  padding: 15px 0;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #fffffe;
+}
 .complete_contents {
+  width: 100%;
   display: flex;
   justify-content: space-around;
+  margin: 0 2%;
 }
 .complete_content{
-  background-color:#f3d2c1;
-  border: 2px solid #000;
+  width: 20%;
+  background-color:#ffc6c7;
+  border: 2px solid #594a4e;
   text-align: center;
+  border-radius: 20px;
+  padding: 0 auto;
+}
+.complete_work_title {
+  background-color: lightpink;
+  margin: 0 5%;
+}
+.complete_work_price {
+  color: #33272a;
+  background-color: lightpink;
+  margin: 0 5%;
+}
+.work_link {
+  text-decoration: none;
+  color: #33272a;
+  margin: 0;
 }

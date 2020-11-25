@@ -1,6 +1,10 @@
 <%= render "shared/second-header" %>
 <div class="show_content">
   <div class="content_space">
+    <h2 class="show_content_name">お仕事依頼者</h2>
+    <h3><%= @work.user.nickname %></h3>
+  </div>
+  <div class="content_space">
     <h2 class="show_content_name">お仕事名</h2>
     <h3><%= @work.title %></h3>
   </div>
@@ -18,7 +22,7 @@
   </div>
   <div class="content_space">
     <h2 class="show_content_name">お仕事をする日</h2>
-    <h3><%= @work.start_time.strftime("%Y-%m-%d %H:%M") %></h3>
+    <h3><%= @work.start_time.strftime("%Y年%m月%d日%H時%M分") %></h3>
   </div>
   <div class="content_space">
     <h2 class="show_content_name">お仕事参考写真</h2>
@@ -48,7 +52,7 @@
     </div>
   <% elsif user_signed_in? && @work.complete %>
     <div class='conplete-btn'>
-      <%= link_to "お仕事は完了しています" , "/",class:"work_request-btn", id:"complete" %>
+      <%= link_to "お仕事は完了しています" , home_works_path(@home.id, @work.id),class:"work_request-btn", id:"complete" %>
     </div>
   <% else %>
   ログインしろよ

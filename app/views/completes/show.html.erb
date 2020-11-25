@@ -1,0 +1,47 @@
+<%= render "shared/second-header" %>
+<div class="show_content">
+  <div class="content_space">
+    <h2 class="show_content_name">お仕事名</h2>
+    <h3><%= @work.title %></h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">報告者</h2>
+    <h3><%= @report.complete.user.nickname %></h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">お仕事を終えた満足度</h2>
+    <h3><%= @report.feeling_score.name %></h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">報告内容etc..</h2>
+    <h3><%= @report.text_report %></h3>
+  </div>
+  
+  <div class="content_space">
+    <h2 class="show_content_name">完了日時</h2>
+    <h3><%= @report.created_at.month%>月<%= @report.created_at.day%>日<%= @report.created_at.hour%>時</h3>
+  </div>
+   <div class="content_space">
+    <h2 class="show_content_name">報酬金額</h2>
+    <h3><%= @work.price %>円</h3>
+  </div>
+  <div class="content_space">
+    <h2 class="show_content_name">報告写真etc..</h2>
+    <% if @report.images.attached? %>
+      <div class="main_image", id="image-list">
+        <div class="thumnails">
+          <% @report.images.each do |image| %>
+          <%= link_to image, "data-lightbox" => image do %>
+            <%= image_tag image.variant(combine_options:{gravity: :center, resize:"640x640^",crop:"640x640+0+0"}).processed,class: "show_image2", id: "show_image", :style=>"width:300;"%>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+ 
+  <footer>
+  <div class="footer"></div>
+  </footer>
+</div>
+  

@@ -2,7 +2,7 @@ class UserContentsController < ApplicationController
   def index
     @user_contents = UserContent.all
     @completes = Complete.all
-    from  = Time.current.at_beginning_of_day
+    from  = Time.current.at_beginning_of_month
     to    = (from + 1.month)
     @completes_month = Complete.where(created_at: from...to)
   end

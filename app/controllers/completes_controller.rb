@@ -4,6 +4,10 @@ class CompletesController < ApplicationController
   def index
     @complete_report = CompleteReport.new
   end
+
+  def show
+    @report = Report.find(params[:id])
+  end
   
   def create
     @complete_report = CompleteReport.new(complete_params)
