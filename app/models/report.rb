@@ -4,7 +4,8 @@ class Report < ApplicationRecord
   has_many_attached :images
   belongs_to :feeling_score
 
-  with_options numericality: { other_than: 1 } do
-    validates :feeling_score_id
+  with_options  presence: true do
+    validates :text_report
+    validates :feeling_score_id, numericality: { other_than: 1 }
   end
 end

@@ -1,5 +1,8 @@
 <%= render "shared/header" %>
 <div class="work_buton">
+<div class="work_buton">
+    <%= link_to 'ホームルーム一覧', "/", class: "work-up" %>
+  </div>
 <%= link_to 'お仕事を発注する', new_home_work_path(@home.id), class: "work-up" %>
 </div>
 <% if current_user.works %>

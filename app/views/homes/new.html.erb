@@ -1,6 +1,8 @@
+<%= render "shared/second-header" %>
 <div class='chat-room-form'>
   <h1>新規ホームルーム</h1>
   <%=form_with model: @home, local: true do |f|%>
+  <%= render 'layouts/error_messages', model: f.object %>
     <div class='chat-room-form__field'>
       <div class='chat-room-form__field--left'>
         <%= f.label :ホームルーム名, class: 'chat-room-form__label'%>
