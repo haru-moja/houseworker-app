@@ -8,4 +8,10 @@ class User < ApplicationRecord
   has_many :home_users
   has_many :homes, through: :home_users
   has_one :user_content
+
+  with_options presence: true do
+    validates :last_name
+    validates :first_name
+    validates :nickname, uniqueness: true
+  end
 end

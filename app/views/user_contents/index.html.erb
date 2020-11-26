@@ -1,5 +1,11 @@
 <%= render "shared/second-header" %>
-<% %>
+<div class="user_icon">
+  <%= link_to "ユーザー情報登録",new_user_content_path, class: "user_edit" %>
+  <% if current_user.user_content.image %>
+    <%= image_tag current_user.user_content.image, class: 'user_content_image' %>
+  <% end %>
+  </div>
+</div>
 <div class="user_content">
   <div class="content_spaces">
     <h2>　　　<%= current_user.nickname %>さんの</h2>
