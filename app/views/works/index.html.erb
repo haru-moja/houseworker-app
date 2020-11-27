@@ -37,7 +37,9 @@
         <% if user_signed_in? && work.complete == nil %>
           <td><%= link_to work.title, home_work_path(@home.id, work.id),class: "work-up" %></td>
           <td><%= work.start_time.strftime("%Y-%m-%d %H:%M") %></td>
-          <td><%= link_to 'お仕事を受ける', home_work_path(@home.id, work.id) %></td>
+          <% unless work.user_id == current_user.id %>
+            <td><%= link_to 'お仕事を受ける', home_work_path(@home.id, work.id) %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
@@ -55,7 +57,7 @@
         <%= link_to work.title, home_work_path(@home.id, work.id),class: "work_title_link" %>
       </div>
     <% else %>
-      <div class = "work_title_link">
+      <div class = "work_title_link2">
         <%= link_to work.title, home_work_path(@home.id, work.id),class: "work_title_link2" %>❌
       </div>
     <% end %>
