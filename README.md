@@ -6,8 +6,6 @@
 |encrypted_password|string|null: false|
 |last_name|string|null: false|
 |first_name|string|null: false|
-<br>
-
 ### Association
 - has_many :works
 - has_many :completes
@@ -17,6 +15,7 @@
 <br>
 <br>
 <br>
+
 ## Homesテーブル
 | Column | Type | Options |
 |---|---|---|
@@ -30,13 +29,12 @@
 <br>
 <br>
 <br>
+
 ## Home_usersテーブル
 | Column | Type | Options |
 |---|---|---|
 |home|references|foreign_key: true|
 |user|references|foreign_key: true|
-<br>
-
 ### Association
 - belongs_to :home
 - belongs_to :user
@@ -54,8 +52,6 @@
 |start_time|datetime|null: false|
 |user|references|foreign_key: true|
 |home|references|foreign_key: true|
-<br>
-
 ### Association
 - belongs_to :home
 - belongs_to :user
@@ -64,13 +60,12 @@
 <br>
 <br>
 <br>
+
 ## Completeテーブル
 | Column | Type | Options |
 |---|---|---|
 |user|references|foreign_key: true|
 |work|references|foreign_key: true|
-<br>
-
 ### Association
 - belongs_to :user
 - belongs_to :work
@@ -79,14 +74,13 @@
 <br>
 <br>
 <br>
+
 ## Reportテーブル
 | Column | Type | Options |
 |---|---|---|
 |text_report|text|null: false|
 |feeling_score_id|integer|null: false|
 |complete|references|foreign_key: true|
-<br>
-
 ### Association
 - belongs_to :complete
 - has_many_attached :images
@@ -94,13 +88,12 @@
 <br>
 <br>
 <br>
+
 ## User_contentsテーブル
 | Column | Type | Options |
 |---|---|---|
 |text_content|text|null: false|
 |user|references|foreign_key: true|
-<br>
-
 ### Association
 - belongs_to :user 
 - has_one_attached :image
