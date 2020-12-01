@@ -30,7 +30,6 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @home.works.each do |work| %>
       <tr>
@@ -45,12 +44,9 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
-
 <%= month_calendar events: @home.works do |date, works| %>
   <%= date.day %>
-
   <% works.each do |work| %>
     <% if work.complete == nil %>
       <div class = "work_title_link">
