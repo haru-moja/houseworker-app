@@ -11,7 +11,7 @@
     <% current_user.homes.each do |home| %>
       <div class="room">
         <div class="room-name work_contents">
-          <%=link_to home.name, home_works_path(home) %>
+          <%=link_to home.name, home_works_path(home.id) %>
         </div>
       </div>
     <% end %>
