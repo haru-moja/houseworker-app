@@ -10,24 +10,22 @@
 <%= render 'layouts/error_messages', model: f.object %>
 <div class="form-group">
   <div class="form-text-wrap">
-    <label class="form-text">お仕事名</label>
-    <span class="indispensable">必須</span>
+    <label class="form-text">仕事に対する気持ち</label>
   </div>
   <%= f.text_field :text_content, class: "input_default",
-  id: "text_content", placeholder:"例) 静かに暮らしたい" %>
+  id: "text_content", placeholder:"例) 一生懸命頑張ります！" %>
 </div>
 
 
 <div class="form-group">
    <div class="click-upload">
         <p>
-          クリックしてファイルをアップロード
+          プロフィール画像
         </p>
         <%= f.file_field :image, id:"item-image" %>
       </div>
 </div>
-
 <div class='request-btn'>
-    <%= f.submit "ユーザー情報を更新する" ,class:"user_content_request-btn" %>
+    <%= f.submit "ユーザー情報を更新する" ,class:"work_request-btn" %>
 </div>
 <% end %>
